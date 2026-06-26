@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, CalendarDays, User } from "lucide-react";
 import { BlogPost } from "../../api/posts/data";
 import BlogCard from "@/components/BlogCard";
+import PostActions from "@/components/PostActions";
 
 // Generate metadata dynamically for SEO
 export async function generateMetadata({
@@ -68,13 +69,16 @@ export default async function PostPage({
 
   return (
     <article className="max-w-3xl mx-auto w-full pb-20">
-      <Link
-        href="/"
-        className="inline-flex items-center gap-2 text-sm font-medium text-slate-400 hover:text-white transition-colors mb-10"
-      >
-        <ArrowLeft className="w-4 h-4" />
-        Back to articles
-      </Link>
+      <div className="flex items-center justify-between mb-10">
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 text-sm font-medium text-slate-400 hover:text-white transition-colors"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          Back to articles
+        </Link>
+        <PostActions postId={post.id} />
+      </div>
 
       <div className="space-y-6 mb-10">
         <div className="flex flex-wrap gap-2">
