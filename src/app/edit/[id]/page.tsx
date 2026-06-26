@@ -52,7 +52,7 @@ export default function EditPostPage() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const tags = postData.tags ? postData.tags.split(',').map(t => t.trim()).filter(Boolean) : ['Community', 'New'];
+    const tags = postData.tags ? postData.tags.split(',').map(t => t.trim()).filter(Boolean) : ['Space', 'New'];
 
     try {
       const response = await fetch(`/api/posts/${params.id}`, {
@@ -88,7 +88,7 @@ export default function EditPostPage() {
   if (isLoading) {
     return (
       <div className="flex justify-center py-20">
-        <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-purple-500"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[var(--accent)]"></div>
       </div>
     );
   }
@@ -96,27 +96,27 @@ export default function EditPostPage() {
   if (success) {
     return (
       <div className="max-w-2xl mx-auto w-full py-20 text-center">
-        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-500/20 text-blue-400 mb-6">
+        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[var(--accent)]/20 text-[var(--accent)] mb-6">
           <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h2 className="text-3xl font-bold text-white mb-4">Post Updated!</h2>
-        <p className="text-slate-400">Your article has been successfully saved. Redirecting to post...</p>
+        <h2 className="text-3xl font-serif font-black text-[var(--foreground)] mb-4">Post Updated!</h2>
+        <p className="text-[var(--muted)]">Your article has been successfully saved. Redirecting to post...</p>
       </div>
     );
   }
 
   return (
     <article className="max-w-3xl mx-auto w-full py-8">
-      <h1 className="text-4xl font-extrabold text-white mb-2 tracking-tight">
+      <h1 className="text-4xl font-serif font-black text-[var(--accent)] mb-2 tracking-tight">
         Edit Article
       </h1>
-      <p className="text-slate-400 mb-10">Make changes to your existing blog post.</p>
+      <p className="text-[var(--muted)] mb-10 text-sm">Make changes to your existing Astrobyte post.</p>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label htmlFor="title" className="block text-sm font-medium text-slate-300 mb-2">Post Title</label>
+          <label htmlFor="title" className="block text-xs font-bold uppercase tracking-widest text-[var(--muted)] mb-2">Post Title</label>
           <input
             type="text"
             id="title"
@@ -124,12 +124,12 @@ export default function EditPostPage() {
             required
             value={postData.title}
             onChange={(e) => setPostData({...postData, title: e.target.value})}
-            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
+            className="w-full px-4 py-3 bg-transparent border border-[var(--border)] text-[var(--foreground)] placeholder-[var(--muted)] focus:outline-none focus:border-[var(--accent)] transition-all rounded-none"
           />
         </div>
 
         <div>
-          <label htmlFor="excerpt" className="block text-sm font-medium text-slate-300 mb-2">Short Excerpt</label>
+          <label htmlFor="excerpt" className="block text-xs font-bold uppercase tracking-widest text-[var(--muted)] mb-2">Short Excerpt</label>
           <input
             type="text"
             id="excerpt"
@@ -137,12 +137,12 @@ export default function EditPostPage() {
             required
             value={postData.excerpt}
             onChange={(e) => setPostData({...postData, excerpt: e.target.value})}
-            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
+            className="w-full px-4 py-3 bg-transparent border border-[var(--border)] text-[var(--foreground)] placeholder-[var(--muted)] focus:outline-none focus:border-[var(--accent)] transition-all rounded-none"
           />
         </div>
 
         <div>
-          <label htmlFor="content" className="block text-sm font-medium text-slate-300 mb-2">Full Content</label>
+          <label htmlFor="content" className="block text-xs font-bold uppercase tracking-widest text-[var(--muted)] mb-2">Full Content</label>
           <textarea
             id="content"
             name="content"
@@ -150,61 +150,61 @@ export default function EditPostPage() {
             rows={10}
             value={postData.content}
             onChange={(e) => setPostData({...postData, content: e.target.value})}
-            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-purple-500 resize-y transition-all font-mono text-sm"
+            className="w-full px-4 py-3 bg-transparent border border-[var(--border)] text-[var(--foreground)] placeholder-[var(--muted)] focus:outline-none focus:border-[var(--accent)] resize-y transition-all font-mono text-sm rounded-none"
           ></textarea>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label htmlFor="author" className="block text-sm font-medium text-slate-300 mb-2">Author Name</label>
+            <label htmlFor="author" className="block text-xs font-bold uppercase tracking-widest text-[var(--muted)] mb-2">Author Name</label>
             <input
               type="text"
               id="author"
               name="author"
               value={postData.author}
               onChange={(e) => setPostData({...postData, author: e.target.value})}
-              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
+              className="w-full px-4 py-3 bg-transparent border border-[var(--border)] text-[var(--foreground)] placeholder-[var(--muted)] focus:outline-none focus:border-[var(--accent)] transition-all rounded-none"
             />
           </div>
           <div>
-            <label htmlFor="tags" className="block text-sm font-medium text-slate-300 mb-2">Tags</label>
+            <label htmlFor="tags" className="block text-xs font-bold uppercase tracking-widest text-[var(--muted)] mb-2">Tags</label>
             <input
               type="text"
               id="tags"
               name="tags"
               value={postData.tags}
               onChange={(e) => setPostData({...postData, tags: e.target.value})}
-              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
-              placeholder="React, Next.js, Tutorial (comma separated)"
+              className="w-full px-4 py-3 bg-transparent border border-[var(--border)] text-[var(--foreground)] placeholder-[var(--muted)] focus:outline-none focus:border-[var(--accent)] transition-all rounded-none"
+              placeholder="Space, Mars, Science (comma separated)"
             />
           </div>
         </div>
 
         <div>
-          <label htmlFor="imageUrl" className="block text-sm font-medium text-slate-300 mb-2">Cover Image URL</label>
+          <label htmlFor="imageUrl" className="block text-xs font-bold uppercase tracking-widest text-[var(--muted)] mb-2">Cover Image URL</label>
           <input
             type="url"
             id="imageUrl"
             name="imageUrl"
             value={postData.imageUrl}
             onChange={(e) => setPostData({...postData, imageUrl: e.target.value})}
-            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
+            className="w-full px-4 py-3 bg-transparent border border-[var(--border)] text-[var(--foreground)] placeholder-[var(--muted)] focus:outline-none focus:border-[var(--accent)] transition-all rounded-none"
           />
         </div>
 
-        <div className="flex justify-end pt-4 border-t border-white/10 gap-4">
+        <div className="flex justify-end pt-4 border-t border-[var(--border)] gap-4">
           <button
             type="button"
             onClick={() => router.back()}
             disabled={isSubmitting}
-            className="px-8 py-3 bg-white/5 hover:bg-white/10 text-white font-semibold rounded-xl transition-all duration-200"
+            className="px-8 py-4 bg-transparent hover:bg-[var(--border)] text-[var(--foreground)] text-xs font-bold uppercase tracking-widest transition-all duration-200"
           >
             Cancel
           </button>
           <button
             type="submit"
             disabled={isSubmitting}
-            className="px-8 py-3 bg-blue-600 hover:bg-blue-500 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold rounded-xl transition-all duration-200 shadow-lg shadow-blue-500/20"
+            className="px-8 py-4 bg-[var(--accent)] hover:bg-[var(--accent-hover)] disabled:opacity-50 disabled:cursor-not-allowed text-white text-xs font-bold uppercase tracking-widest transition-all duration-200"
           >
             {isSubmitting ? "Saving..." : "Save Changes"}
           </button>

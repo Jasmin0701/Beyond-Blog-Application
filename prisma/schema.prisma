@@ -20,6 +20,8 @@ model Post {
   date      DateTime @default(now())
   imageUrl  String
   tags      String   // We'll store tags as a comma-separated string for simplicity in SQLite
+  views     Int      @default(0)
+  likes     Int      @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

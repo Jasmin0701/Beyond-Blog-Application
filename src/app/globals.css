@@ -1,26 +1,55 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0B0F19; /* Very dark slate, almost black */
+  --foreground: #F8FAFC;
+  --accent: #A855F7; /* Purple-500 */
+  --accent-hover: #C084FC; /* Purple-400 */
+  --card-bg: #111827; /* Gray-900 */
+  --border: #1F2937; /* Gray-800 */
+  --muted: #9CA3AF; /* Gray-400 */
+}
+
+/* If someone toggles to light mode, we keep a functional light theme just in case, but dark is primary */
+:root[class~="light"] {
+  --background: #FFFFFF;
+  --foreground: #111827;
+  --accent: #A855F7;
+  --accent-hover: #9333EA;
+  --card-bg: #F3F4F6;
+  --border: #E5E7EB;
+  --muted: #6B7280;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-card: var(--card-bg);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Custom scrollbar for elegance */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background); 
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border); 
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent); 
 }
