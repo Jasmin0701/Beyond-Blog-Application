@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers";
-import { Menu } from "lucide-react";
-import Link from "next/link";
+import Navigation from "@/components/Navigation";
 import ThemeToggle from "@/components/ThemeToggle";
 
 const inter = Inter({ 
@@ -33,18 +33,7 @@ export default function RootLayout({
                 </span>
               </Link>
 
-              <div className="flex items-center gap-6">
-                <nav className="hidden md:flex gap-6 text-sm font-semibold text-[var(--muted)] items-center">
-                  <Link href="/" className="hover:text-[var(--foreground)] transition-colors">Home</Link>
-                  <Link href="/about" className="hover:text-[var(--foreground)] transition-colors">About</Link>
-                  <Link href="/contact" className="hover:text-[var(--foreground)] transition-colors">Contact</Link>
-                  <ThemeToggle />
-                  <Link href="/create" className="px-4 py-2 bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white rounded-md transition-colors ml-2">Write a Post</Link>
-                </nav>
-                <button className="md:hidden p-2 text-[var(--foreground)] hover:bg-[var(--border)] rounded-md">
-                  <Menu className="w-5 h-5" />
-                </button>
-              </div>
+              <Navigation />
             </header>
 
             <main className="flex-1">{children}</main>
